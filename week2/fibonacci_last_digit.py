@@ -1,4 +1,4 @@
-def get_fibonacci_last_digit_naive(n_number):
+def fibonacci_last_digit(n_number):
     if n_number <= 1:
         return n_number
     
@@ -14,5 +14,5 @@ def get_fibonacci_last_digit_naive(n_number):
     return answer
 
 if __name__ == '__main__':
-    n = int(input())
-    print(get_fibonacci_last_digit_naive(n))
+    input_n = int(input())
+    print(fibonacci_last_digit(input_n))

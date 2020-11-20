@@ -2,7 +2,7 @@ import sys
 
 def lcm(a, b):
     denominator = greatest_common_divisor(a, b)
-    return int((a * b) / denominator)
+    return int((a / denominator) * b)
 
 def greatest_common_divisor(a, b):
     gcd = -1

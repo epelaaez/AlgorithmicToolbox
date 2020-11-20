@@ -1,3 +1,5 @@
+import sys
+
 def greatest_common_divisor(a, b):
     gcd = -1
     
@@ -12,7 +14,7 @@ def greatest_common_divisor(a, b):
 
     return greatest_common_divisor(b, a_prime)
 
-if __name__ == '__main__':
-    input_a = int(input())
-    input_b = int(input())
-    print(greatest_common_divisor(input_a, input_b))
+if __name__ == "__main__":
+    input = sys.stdin.read()
+    a, b = map(int, input.split())
+    print(greatest_common_divisor(a, b))

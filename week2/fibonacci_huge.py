@@ -34,6 +34,6 @@ def fibonacci_number(n_number):
     return answer
 
 if __name__ == '__main__':
-    input = sys.stdin.read();
+    input = sys.stdin.readline();
     n, m = map(int, input.split())
     print(fibonacci_huge(n, m))

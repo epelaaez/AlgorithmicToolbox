@@ -1,18 +1,32 @@
-# Uses python3
 import sys
 
 def fibonacci_partial_sum(from_, to):
     answer = 0
-    
+    period = find_period(10)
+
     for i in range(from_, to + 1):
-        answer += fibonacci_last_digit(i)
+        index = i % len(period)
+        answer += period[index]
     
     while(answer >= 10):
         answer %= 10
 
     return answer
 
-def fibonacci_last_digit(n_number):
+def find_period(m):
+    period = []
+    iteration = 0
+
+    while(True):
+        period.append(fibonacci_number(iteration) % m)
+        if len(period) >= 4 and period[0] == period[-2] and period[1] == period[-1]:
+            period = period[:len(period) - 2]
+            break
+        iteration += 1
+
+    return period
+
+def fibonacci_number(n_number):
     if n_number <= 1:
         return n_number
     
@@ -21,7 +35,7 @@ def fibonacci_last_digit(n_number):
     answer = 0
 
     for _ in range(2, n_number + 1):
-        answer = (last_2 + last_1)  % 10
+        answer = last_2 + last_1
         last_2 = last_1
         last_1 = answer
         

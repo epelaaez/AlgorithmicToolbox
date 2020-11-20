@@ -1,4 +1,3 @@
-# Uses python3
 import sys
 
 def fibonacci_sum(n):
@@ -30,4 +29,4 @@ def fibonacci_last_digit(n_number):
 if __name__ == '__main__':
     input = sys.stdin.readline()
     n = int(input)
-    print(fibonacci_sum_naive(n))
+    print(fibonacci_sum(n))

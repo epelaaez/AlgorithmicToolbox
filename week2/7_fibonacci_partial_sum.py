@@ -44,6 +44,6 @@ def fibonacci_number(n_number):
     return answer
 
 if __name__ == '__main__':
-    input = sys.stdin.readline();
+    input = sys.stdin.readline()
     from_, to = map(int, input.split())
     print(fibonacci_partial_sum(from_, to))

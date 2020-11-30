@@ -3,6 +3,8 @@ import sys
 def fibonacci_partial_sum(from_, to):
     answer = 0
     period = find_period(10)
+    from_ = from_ % len(period)
+    to = from_ + (to - from_) % len(period) # makes sure difference between to and from_ remains the same after doing % len(period)
 
     for i in range(from_, to + 1):
         index = i % len(period)
@@ -40,7 +42,6 @@ def fibonacci_number(n_number):
         last_1 = answer
         
     return answer
-
 
 if __name__ == '__main__':
     input = sys.stdin.readline();

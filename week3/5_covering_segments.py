@@ -4,28 +4,30 @@ from collections import namedtuple
 Segment = namedtuple('Segment', 'start end')
 
 def optimal_points(segments):
+    segments = sorted(segments, key = lambda s: s.start) # sort segments by starting point
+
     points = []
-    smallest_pair, smallest_length = [], float("inf")
-    reached = []
+    common_points = []
 
-    for s in segments:
-        if s.end - s.start <= smallest_length:
-            smallest_length = s.end - s.start
-            smallest_pair = s
-            reached.append(s)
-            segments.remove(s)
-    
-    for s in segments:
-        if s.start <= smallest_pair.end and s.end >= smallest_pair.start:
-            reached.append(s)
-            if s.start not in points:
-                points.append(s.start) 
-            segments.remove(s)
+    while len(segments) != 0:
+        reached_points = []
+        common_points = [*range(segments[0].start, segments[0].end + 1)]
+        for i in range(len(segments)):
+            if segments[i].start <= segments[0].end:
+                reached_points.append(segments[i])
+                if segments[i].end >= segments[0].end:
+                    common_points = [*range(segments[i].start, segments[0].end + 1)]
+                else:
+                    common_points = [*range(segments[i].start, segments[i].end + 1)]
+            else:
+                break
 
-    if len(segments) == 0:
-        return points
+        points.append(common_points[0])
+        for point in reached_points:
+            segments.remove(point)
 
-    return points + optimal_points(segments)
+    return points
+
 
 if __name__ == '__main__':
     input = sys.stdin.read()

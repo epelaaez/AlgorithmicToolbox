@@ -9,21 +9,29 @@ def optimal_points(segments):
     points = []
     common_points = []
 
-    while len(segments) != 0:
-        reached_points = []
-        common_points = [*range(segments[0].start, segments[0].end + 1)]
+    while len(segments) > 0:
+        reached_sequences = []
+
+        shortest_segment = segments[0]
+        for segment in segments:
+            if segment.start != segments[0].start:
+                break
+            if segment.end - segment.start <= shortest_segment.end - shortest_segment.start:
+                shortest_segment = segment
+        common_points = [*range(shortest_segment.start, shortest_segment.end + 1)]
+
         for i in range(len(segments)):
-            if segments[i].start <= segments[0].end:
-                reached_points.append(segments[i])
-                if segments[i].end >= segments[0].end:
+            if segments[i].start <= common_points[-1]:
+                reached_sequences.append(segments[i])
+                if segments[i].end >= common_points[-1]:
                     common_points = [*range(segments[i].start, segments[0].end + 1)]
                 else:
                     common_points = [*range(segments[i].start, segments[i].end + 1)]
             else:
                 break
-
-        points.append(common_points[0])
-        for point in reached_points:
+            
+        points.append(common_points[-1])
+        for point in reached_sequences:
             segments.remove(point)
 
     return points

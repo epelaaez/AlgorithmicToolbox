@@ -6,7 +6,12 @@ def get_majority_element(a, left, right):
         return -1
     if left + 1 == right:
         return a[left]
-    #write your code here
+    
+    mid = left + ((right - left) // 2)
+    
+    # Divide array into two, if there is a majority element it must also be a majority element in one of the two sections
+    # Then repeat recursively
+
     return -1
 
 if __name__ == '__main__':

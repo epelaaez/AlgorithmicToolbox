@@ -2,15 +2,17 @@
 import sys
 
 def get_majority_element(a, left, right):
-    if left == right:
-        return -1
-    if left + 1 == right:
-        return a[left]
+    counts = dict()   
+
+    for element in a:
+        if element in counts:
+            counts[element] += 1
+        else:
+            counts[element] = 1
     
-    mid = left + ((right - left) // 2)
-    
-    # Divide array into two, if there is a majority element it must also be a majority element in one of the two sections
-    # Then repeat recursively
+    for element, count in counts.items():
+        if count > (right / 2):
+            return element
 
     return -1
 

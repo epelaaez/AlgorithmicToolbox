@@ -2,6 +2,8 @@
 import sys
 
 def get_majority_element(a, left, right):
+    # Solved using non divide and conquer approach
+
     counts = dict()   
 
     for element in a:

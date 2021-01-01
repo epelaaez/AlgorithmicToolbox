@@ -1,4 +1,3 @@
-# Uses python3
 import sys
 
 def get_majority_element(a, left, right):

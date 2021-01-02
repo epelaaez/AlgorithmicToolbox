@@ -1,5 +1,6 @@
-import sys
 # Good video on the topic: https://www.youtube.com/watch?v=7_AJfusC6UQ&index=14&list=PLXFMmlk03Dt7Q0xr1PIAriY5623cKiH7V
+
+import sys
 
 def get_number_of_inversions(a):
     solution = merge_sort(a) # Sorted array will be returned in reverse, but we only care about the count of inverse in this problem

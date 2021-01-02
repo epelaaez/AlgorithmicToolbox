@@ -38,7 +38,7 @@ def find_min_between_sections(a, b, d, mid):
             possible_points.append(point)
 
     for point in b:
-        if distance(point, (mid[0], point[1])) < d:
+        if distance(point, (mid[0], point[1])) > d:
             pass
         else:
             possible_points.append(point)

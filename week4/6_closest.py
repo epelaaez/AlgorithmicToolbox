@@ -37,16 +37,14 @@ def find_min_between_sections(a, b, d, mid):
 
         for i, point in enumerate(a):
             if distance(point, (mid[0], point[1])) < d:
-                point_a = point
-                a.pop(i)
+                point_a = [i, point]
                 break
             else:
                 a.pop(i)
         
         for i, point in enumerate(b):
             if distance(point, (mid[0], point[1])) < d:
-                point_b = point
-                b.pop(i)
+                point_b = [i, point]
                 break
             else:
                 b.pop(i)
@@ -54,16 +52,27 @@ def find_min_between_sections(a, b, d, mid):
         if point_a is None and point_b is None:
             break
         elif point_a is None and point_b is not None:
-            possible_points.append(point_b)
+            possible_points.append(point_b[1])
+            b.pop(point_b[0])
         elif point_b is None and point_a is not None:
-            possible_points.append(point_a)
+            possible_points.append(point_a[1])
+            a.pop(point_a[0])
         else:
-            if point_a[1] > point_b[1]:
-                possible_points.append(point_b)        
-                possible_points.append(point_a)
+            if point_b[1] < point_a[1]:
+                possible_points.append(point_b[1])        
+                b.pop(point_b[0])
             else:
-                possible_points.append(point_a)
-                possible_points.append(point_b)
+                possible_points.append(point_a[1])
+                a.pop(point_a[0])
+
+    if len(a) != 0:
+        for point in a:
+            if distance(point, (mid[0], point[1])) < d:
+                possible_points.append(point)
+    elif len(b) != 0:
+        for point in b:
+            if distance(point, (mid[0], point[1])) < d:
+                possible_points.append(point)
     
     for i, point_1 in enumerate(possible_points):
         for j, point_2 in enumerate(possible_points):

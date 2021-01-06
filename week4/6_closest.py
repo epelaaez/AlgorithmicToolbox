@@ -47,7 +47,7 @@ def find_min_between_sections(a, b, d, mid):
                 point_b = [i, point]
                 break
             else:
-                b.pop(i)
+                b.pop(i)                
 
         if point_a is None and point_b is None:
             break
@@ -69,15 +69,19 @@ def find_min_between_sections(a, b, d, mid):
         for point in a:
             if abs(point[0] - mid[0]) < d:
                 possible_points.append(point)
+            else:
+                break
     elif len(b) != 0:
         for point in b:
             if abs(point[0] - mid[0]) < d:
                 possible_points.append(point)
+            else:
+                break
     
-    for i, point_1 in enumerate(possible_points):
-        for j, point_2 in enumerate(possible_points):
-            if abs(i - j) <= 7 and i != j:
-                d_2 = min(d_2, distance(point_1, point_2))
+    for i, point in enumerate(possible_points):
+        upper = min(i + 7, len(possible_points) - 1)
+        for j in range(i + 1, upper + 1):
+            d_2 = min(d_2, distance(point, possible_points[j]))
     
     return min(d, d_2)
 

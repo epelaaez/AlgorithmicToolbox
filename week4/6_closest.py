@@ -7,7 +7,7 @@ def minimum_distance(x, y):
         points.append((j, y[i]))
 
     # Sort points by x and y coordinate
-    points.sort(key=lambda x: (x[0], x[1]))
+    points.sort(key=lambda x: x[0])
 
     return find_min_distance(points)
 
@@ -89,9 +89,7 @@ def distance(point1, point2):
     """
     Helper function to find distance between two points
     """
-    x = math.pow(point1[0] - point2[0], 2)
-    y = math.pow(point1[1] - point2[1], 2)
-    return math.sqrt(x + y)
+    return math.hypot(point1[0] - point2[0], point1[1] - point2[1])
 
 if __name__ == '__main__':
     input = sys.stdin.read()

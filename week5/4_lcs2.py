@@ -1,20 +1,24 @@
 import sys
 
 def lcs2(a, b):
-    if min(len(a), len(b)) == len(a):
-        a, b = b, a
+    solution = [[0] * len(b) for _ in range(len(a))]
 
-    pointer = 0
-    while len(b) != 0 and len(a) != 0:
-        if pointer >= len(a):
-                break
-        if a[pointer] == b[0]:
-            pointer += 1
-            b.pop(0)
-        else:
-            a.pop(pointer)
-            
-    return len(a)
+    for i in range(len(a)):
+        for j in range(len(b)):
+            if a[i] == b[j]:
+                if i - 1 >= 0 and j - 1 >= 0:
+                    solution[i][j] = solution[i - 1][j - 1] + 1
+                else:
+                    solution[i][j] = 1
+            else:
+                if i - 1 >= 0 and j - 1 >= 0:
+                    solution[i][j] = max(solution[i - 1][j], solution[i][j - 1])
+                elif i - 1 < 0:
+                    solution[i][j] = solution[i][j - 1]
+                else:
+                    solution[i][j] = solution[i - 1][j]
+
+    return solution[len(a) - 1][len(b) - 1]
 
 if __name__ == '__main__':
     input = sys.stdin.read()
